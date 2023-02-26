@@ -19,7 +19,8 @@ const checkList: Check[] = [
       },
       {
         title: "リスペクトを持つ",
-        description: "説明が長いですわあああああ",
+        description:
+          "説明が長いですわあああああ説明が長いですわあああああ説明が長いですわあああああ説明が長いですわあああああ",
         isOpen: true,
       },
       {
@@ -57,10 +58,10 @@ const checkList: Check[] = [
 ];
 
 const Home = () => {
-  const [isOpen, setOpen] = useState(0);
+  const [isOpen, setOpen] = useState(-1);
 
   return (
-    <div>
+    <div className="md:w-2/3 mx-auto">
       {isOpen === -1 ? (
         <div>
           <div className="text-3xl text-center pt-12">気を付けたい</div>
@@ -72,6 +73,7 @@ const Home = () => {
                     type="button"
                     className=" text-center text-lg px-2 py-8 rounded bg-[#525252] text-white shadow"
                     key={"checkList_" + index}
+                    onClick={() => setOpen(index)}
                   >
                     {check.title}
                   </button>
@@ -98,16 +100,38 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <div className="bg-white w-full h-screen rounded-t-3xl shadow-2xl pt-12 mt-8">
-            <div className="text-3xl text-center">
+          <div className="bg-white w-full h-screen rounded-t-3xl shadow-2xl mt-8">
+            <button
+              type="button"
+              className="text-gray-400 float-right mr-2 mt-2"
+              onClick={() => setOpen(-1)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-14 h-14"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </button>
+            <div className="text-3xl text-center pt-16">
               {checkList[isOpen].title}
             </div>
-
             {checkList[isOpen].checklist.map((check, index: number) => {
               return (
                 <div key={"topic_" + index} className="my-4">
-                  <div className="grid grid-cols-3 gap-4 px-2 place-items-center">
-                    <div className="rounded-full border border-b-2 border-black p-2 col-span-1">
+                  <div className="grid grid-cols-3 gap-4 px-2 place-content-stretch items-center">
+                    <button
+                      type="button"
+                      className="rounded-full border border-b-2 border-black p-2 col-span-1 place-self-center"
+                    >
                       {!check.isOpen ? (
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -126,11 +150,11 @@ const Home = () => {
                       ) : (
                         <div className="w-6 h-6"></div>
                       )}
-                    </div>
+                    </button>
                     <div className="col-span-2 text-lg">{check.title}</div>
                   </div>
                   {check.isOpen && (
-                    <div className="p-2">{check.description}</div>
+                    <div className="p-4 text-gray-600">{check.description}</div>
                   )}
                 </div>
               );
