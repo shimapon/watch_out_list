@@ -64,8 +64,10 @@ const Home = () => {
     <div className="md:w-2/3 mx-auto">
       {isOpen === -1 ? (
         <div>
-          <div className="text-3xl text-center pt-12">気を付けたい</div>
-          <div className="bg-white w-full h-screen rounded-t-3xl shadow-2xl pt-12 mt-8">
+          <div className="text-3xl text-center pt-12 fixed inset-0 m-auto">
+            気を付けたい
+          </div>
+          <div className="bg-white w-full h-screen rounded-t-3xl pt-12 mt-32 relative shadow-[0_0_15px_-5px_#777777]">
             <div className="grid grid-cols-2 gap-4 px-4">
               {checkList.map((check: Check, index: number) => {
                 return (
